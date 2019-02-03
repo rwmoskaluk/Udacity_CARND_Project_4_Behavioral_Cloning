@@ -7,7 +7,7 @@ from scipy import ndimage
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Flatten, Dense, Activation, Cropping2D, Lambda, Convolution2D
-from sklearn.preprocessing import LabelBinarizer
+from keras.callbacks import CSVLogger
 
 
 def data_extraction():
@@ -57,14 +57,14 @@ def neural_network_model(x_train, y_train):
     model.add(Dense(1))
 
     model.compile('adam', loss='mse')
-    history = model.fit(x_train, y_train, epochs=10, validation_split=0.2)
+    csv_logger = CSVLogger("model/model_history_log.csv", append=True, separator=';')
+    model.fit(x_train, y_train, epochs=10, validation_split=0.2, callbacks=[csv_logger])
     model.save('model/model.h5')
-    return history
 
 
 def main():
     x_train, y_train = data_extraction()
-    history = neural_network_model(x_train, y_train)
+    neural_network_model(x_train, y_train)
     print('')
 
 if __name__ == '__main__':
