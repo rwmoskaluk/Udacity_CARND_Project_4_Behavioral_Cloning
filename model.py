@@ -28,6 +28,8 @@ def data_extraction():
             images.append(image)
             measurement = float(line[3])
             measurements.append(measurement)
+            images.append(np.fliplr(image))
+            measurements.append(-1.0 * measurement)
 
     x_train = np.array(images)
     y_train = np.array(measurements)
