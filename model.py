@@ -20,21 +20,52 @@ def data_extraction():
     images = []
     measurements = []
     for line in lines[1:]:
-        for i in range(3):
-            source_path = line[i]
-            filename = source_path.split('/')[-1]
-            current_path = 'data/IMG/' + filename
-            image = ndimage.imread(current_path)
-            images.append(image)
-            measurement = float(line[3])
-            measurements.append(measurement)
-            images.append(np.fliplr(image))
-            measurements.append(-1.0 * measurement)
+        image, measurement = process_image(line)
+        images.extend(image)
+        measurements.extend(measurement)
 
     x_train = np.array(images)
     y_train = np.array(measurements)
 
     return x_train, y_train
+
+
+def process_image(line):
+    center_source_path = line[0]
+    left_source_path = line[1]
+    right_source_path = line[2]
+
+    center_filename = center_source_path.split('/')[-1]
+    left_filename = left_source_path.split('/')[-1]
+    right_filename = right_source_path.split('/')[-1]
+
+    center_current_path = 'data/IMG/' + center_filename
+    left_current_path = 'data/IMG/' + left_filename
+    right_current_path = 'data/IMG/' + right_filename
+
+    center_image = ndimage.imread(center_current_path)
+    left_image = ndimage.imread(left_current_path)
+    right_image = ndimage.imread(right_current_path)
+
+    flip_center_image = np.fliplr(center_image)
+    flip_left_image = np.fliplr(left_image)
+    flip_right_image = np.fliplr(right_image)
+
+    correction = 0.2
+    measurement = float(line[3])
+    center_measurement = measurement
+    left_measurement = center_measurement + correction
+    right_measurement = center_measurement - correction
+
+    flip_center_measurement = -1.0 * center_measurement
+    flip_left_measurement = -1.0 * left_measurement
+    flip_right_measurement = -1.0 * right_measurement
+
+    images = [center_image, left_image, right_image, flip_center_image, flip_left_image, flip_right_image]
+    measurements = [center_measurement, left_measurement, right_measurement, flip_center_measurement,
+                    flip_left_measurement, flip_right_measurement]
+
+    return images, measurements
 
 
 def neural_network_model(x_train, y_train):
