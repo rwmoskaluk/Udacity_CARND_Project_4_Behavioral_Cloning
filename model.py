@@ -6,7 +6,7 @@ import csv
 from scipy import ndimage
 import numpy as np
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Activation, Cropping2D, Lambda, Convolution2D
+from keras.layers import Flatten, Dense, Cropping2D, Lambda, Convolution2D
 from keras.callbacks import CSVLogger
 
 
@@ -31,6 +31,12 @@ def data_extraction():
 
 
 def process_image(line):
+    """
+    Function for extracting and processing images saved on the test runs
+    :param line:
+    :return: images, measurements lists of with left, center, and right images and corresponding driving steering
+        measurements
+    """
     center_source_path = line[0]
     left_source_path = line[1]
     right_source_path = line[2]
@@ -98,7 +104,7 @@ def neural_network_model(x_train, y_train):
 def main():
     x_train, y_train = data_extraction()
     neural_network_model(x_train, y_train)
-    print('')
+
 
 if __name__ == '__main__':
     main()

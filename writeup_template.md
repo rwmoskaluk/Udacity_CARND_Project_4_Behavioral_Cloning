@@ -1,9 +1,4 @@
 # **Behavioral Cloning** 
-
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
 **Behavioral Cloning Project**
@@ -18,7 +13,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
+[image1]: ./writeup_images/cnn-architecture-624x890.png "Nvidia CNN"
 [image2]: ./examples/placeholder.png "Grayscaling"
 [image3]: ./examples/placeholder_small.png "Recovery Image"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
@@ -54,23 +49,24 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+The model architecture that was employed for this project is based on the Nvidia self driving car paper.  This model utilizes the following architecture:
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+![alt text][image1]
 
 #### 2. Attempts to reduce overfitting in the model
 
-The model contains dropout layers in order to reduce overfitting (model.py lines 21). 
-
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model had the original images of size 160x320 cropped down to reduce background noise overfitting on non relevant information. This was added to the Nvidia CNN design after the normalization and input planes.  The images were cropped by 50 pixels on the top and 20 pixels on the bottom with no crop on the left or right of the image.  This resulted in a 110x320 image for processing.
+ 
+The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 100). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 98) and further utilized a loss function of the mean squared error for the adam optimizer. 
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving with the provided steering measurements.  After some initial attempts around the track with almost successfully completing the track some adjustments had to be made.  The first adjustment was augmenting the data with a reverse of the course so the car stopped pulling to the left of the track.
+The second adjustment was adding in the left and right images and creating a correction factor for the steering for those images based on the center image.  
 
 For details about how I created the training data, see the next section. 
 
@@ -78,7 +74,7 @@ For details about how I created the training data, see the next section.
 
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+The overall strategy for deriving a model architecture was finding one that was worked for the application and making modifications to it and augmenting the dataset.
 
 My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
 

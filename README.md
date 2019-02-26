@@ -17,9 +17,9 @@ To meet specifications, the project will require submitting five files:
 * drive.py (script to drive the car - feel free to modify this file)
 * model.h5 (a trained Keras model)
 * a report writeup file (either markdown or pdf)
-* video.mp4 (a video recording of your vehicle driving autonomously around the track for at least one full lap)
+* video_images.mp4 (a video_images recording of your vehicle driving autonomously around the track for at least one full lap)
 
-This README file describes how to output the video in the "Details About Files In This Directory" section.
+This README file describes how to output the video_images in the "Details About Files In This Directory" section.
 
 Creating a Great Writeup
 ---
@@ -46,7 +46,7 @@ The lab enviroment can be created with CarND Term1 Starter Kit. Click [here](htt
 
 The following resources can be found in this github repository:
 * drive.py
-* video.py
+* video_images.py
 * writeup_template.md
 
 The simulator can be downloaded from the classroom. In the classroom, we have also provided sample data that you can optionally use to help train your model.
@@ -94,28 +94,28 @@ ls run1
 ...
 ```
 
-The image file name is a timestamp of when the image was seen. This information is used by `video.py` to create a chronological video of the agent driving.
+The image file name is a timestamp of when the image was seen. This information is used by `video_images.py` to create a chronological video_images of the agent driving.
 
-### `video.py`
+### `video_images.py`
 
 ```sh
 python video.py run1
 ```
 
-Creates a video based on images found in the `run1` directory. The name of the video will be the name of the directory followed by `'.mp4'`, so, in this case the video will be `run1.mp4`.
+Creates a video_images based on images found in the `run1` directory. The name of the video_images will be the name of the directory followed by `'.mp4'`, so, in this case the video_images will be `run1.mp4`.
 
-Optionally, one can specify the FPS (frames per second) of the video:
+Optionally, one can specify the FPS (frames per second) of the video_images:
 
 ```sh
 python video.py run1 --fps 48
 ```
 
-Will run the video at 48 FPS. The default FPS is 60.
+Will run the video_images at 48 FPS. The default FPS is 60.
 
 #### Why create a video
 
-1. It's been noted the simulator might perform differently based on the hardware. So if your model drives succesfully on your machine it might not on another machine (your reviewer). Saving a video is a solid backup in case this happens.
-2. You could slightly alter the code in `drive.py` and/or `video.py` to create a video of what your model sees after the image is processed (may be helpful for debugging).
+1. It's been noted the simulator might perform differently based on the hardware. So if your model drives succesfully on your machine it might not on another machine (your reviewer). Saving a video_images is a solid backup in case this happens.
+2. You could slightly alter the code in `drive.py` and/or `video_images.py` to create a video_images of what your model sees after the image is processed (may be helpful for debugging).
 
 ### Tips
 - Please keep in mind that training images are loaded in BGR colorspace using cv2 while drive.py load images in RGB to predict the steering angles.
