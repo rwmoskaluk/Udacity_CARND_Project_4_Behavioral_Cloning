@@ -14,6 +14,7 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./writeup_images/cnn-architecture-624x890.png "Nvidia CNN"
+[image2]: ./writeup_images/cnn-architecture-624x890_cropped.png "Nvidia CNN modified"
 [image6]: ./writeup_images/2019_02_17_22_44_41_736.jpg "Normal Image"
 [image7]: ./writeup_images/2019_02_17_22_44_41_736_flipped.jpg "Flipped Image"
 
@@ -45,7 +46,10 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. An appropriate model architecture has been employed
 
-The model architecture that was employed for this project is based on the Nvidia self driving car paper.  This model utilizes the following architecture:
+The model architecture that was employed for this project is based on the Nvidia self driving car paper.
+https://devblogs.nvidia.com/deep-learning-self-driving-cars/
+
+This model utilizes the following architecture:
 
 ![alt text][image1]
 
@@ -78,11 +82,9 @@ Going back to drawing board I decided to take the left and right camera angles a
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 85-96) consisted of a convolution neural network with the following layers and layer sizes, here is a visualization of the architecture.
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
+![alt text][image2]
 
 #### 3. Creation of the Training Set & Training Process
 
